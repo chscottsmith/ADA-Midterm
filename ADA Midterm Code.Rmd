@@ -1,0 +1,43 @@
+---
+title: "ADA Midterm Code"
+output: html_document
+date: "2022-10-14"
+---
+#Question 3: Using the titanic dataset located at "https://github.com/kijohnson/Data", prepare an R markdown file that shows the code for a) importing the dataset, b) determining the median age for by passenger class, and c) a plot that shows medians, spread of data, and outliers for the continuous variable age according to passenger class. Report the medians by passenger class and upload a PDF or picture of your plot.
+```{r}
+#0: Install packages and open libraries:
+pacman::p_load(tidyverse)
+
+#a: importing dataset:
+midterm_titanic <- read_csv("https://raw.githubusercontent.com/kijohnson/Data/main/titanic.csv")
+
+#b: determining the median age by passenger class:
+midterm_titanic %>%
+    group_by(Pclass) %>%
+    summarize(median_age = median(Age))
+
+#c: creating plot of median age by passenger class:
+class(midterm_titanic$Pclass) #determining class of "Pclass" = "numeric"
+class(midterm_titanic$Age) #determining class of "Age" = "numeric"
+
+plot1 <- ggplot(midterm_titanic, aes(x=as_factor(Pclass), y=Age)) + 
+  geom_boxplot()+
+  labs(title = "Age by Passenger Class", y="Age", x="Passenger Class") #creating box plot of variables with  "Pclass" coded as factor
+
+plot1 #displaying plot
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
