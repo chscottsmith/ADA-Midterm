@@ -27,6 +27,14 @@ plot1 <- ggplot(midterm_titanic, aes(x=as_factor(Pclass), y=Age)) +
 plot1 #displaying plot
 ```
 
+#Question 4b: Next, add code to determine the percentage of males and females by class. Save this new version and push the new version to your Github repository
+
+```{r}
+#4b: determining % of sex by class:
+midterm_titanic %>%
+    group_by(Sex, Pclass) %>%
+    summarize(percent = 100 * n() / nrow(midterm_titanic))
+```
 
 
 
